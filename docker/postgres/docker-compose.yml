@@ -1,0 +1,24 @@
+version: '3.3'
+
+services: 
+    postgresql:
+        container_name: postgresql-servidor   #no le ponemos nombre si hay varias intancias
+        image: postgres:16.2-bullseye
+
+        networks:
+            - red-fabri  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}     #HACER UN ARCHIVO .env
+            - POSTGRES_DB=${POSTGRES_DB}  
+            - PGDATA=/var/lib/postgresql/data/pgdata  #DODNE SE ALMACENA
+
+        volumes: #vinvula el host con el contenedor 
+            - ./data:/var/lib/postgresql
+            
+        restart: always
+
+networks:
+    red-fabri:
