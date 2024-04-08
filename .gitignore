@@ -2,9 +2,15 @@ venv/
 
 .env
 
-app/config/env.py
+app/config/.env
 
 **/__pycache__/
+
+/docker/postgres/data/
+
+app/__pycache__/
+
+/__pycache__/
 
 app/test/__pycache__/
 

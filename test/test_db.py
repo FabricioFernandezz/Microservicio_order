@@ -1,24 +1,23 @@
-import psycopg2
 import unittest
+from app import create_app, db
+from sqlalchemy import text
 
+class DatabaseTestCase(unittest.TestCase):
 
-class TestDatabase(unittest.TestCase): 
+    def setUp(self):
+        self.app = create_app()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        db.create_all()
 
-    def setUp(self): #creo la conexion a la base de datos
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
 
-        self.conn = psycopg2.connect("postgresql://postgres:9697@localhost:5432/microservicio_order")
-        self.cur = self.conn.cursor()
-        
-    def tearDown(self): #cierro la conexion a la base de datos
-
-        self.cur.close()
-        self.conn.close()
-
-    def test_connection(self): #test de conexion a la base de datos
-        self.assertIsNotNone(self.conn)
-
-  
+    def test_db_connection(self):
+        result= db.session.query(text("'probando'")).one()
+        self.assertEqual(result[0], 'probando')
     
 if __name__ == '__main__':
     unittest.main()
-

@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 
 basedir = os.path.abspath(Path(__file__).parents[2])
-load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(basedir, './app/config/.env'))
 
 class Config(object):
     TESTING = False

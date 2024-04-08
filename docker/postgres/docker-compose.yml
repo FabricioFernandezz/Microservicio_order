@@ -6,7 +6,7 @@ services:
         image: postgres:16.2-bullseye
 
         networks:
-            - red-fabri  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
+            - postgresql  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
         ports:
             - "5432:5432"
         environment:
@@ -16,9 +16,9 @@ services:
             - PGDATA=/var/lib/postgresql/data/pgdata  #DODNE SE ALMACENA
 
         volumes: #vinvula el host con el contenedor 
-            - ./data:/var/lib/postgresql
+            - ./data:/var/lib/postgresql/data
             
-        restart: always
+        # restart: always
 
 networks:
-    red-fabri:
+    postgresql:
