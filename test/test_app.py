@@ -1,5 +1,4 @@
 
-from app.models.order import Order
 from app import create_app
 import unittest
 

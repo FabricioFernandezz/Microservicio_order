@@ -3,7 +3,6 @@ from app.config.database import db
 from app.repositories.CRUD import Read, Update, Create, Delete
 
 
-# Base repository for all the other ones. Aplying DRY and IoC principle
 class BaseRepository(Read, Update, Create, Delete):
     def __init__(self, model):
         self.__model = model

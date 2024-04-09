@@ -1,20 +1,21 @@
-from app.services.order_service import *
+from app.repositories import OrderRepository
 
 class OrderService:
+    
     def __init__(self):
-        self.order_service = OrderService()
+        self.__repo = OrderRepository()
 
+    def find_by_id(self, id_order):
+        return self.__repo.find_by_id(id_order)
+    
     def find_all(self):
-        return self.order_service.find_all()
-
-    def find_by_id(self, id):
-        return self.order_service.find_by_id(id)
-
+        return self.__repo.find_all()
+    
+    def update (self, order, id_order):
+        return self.__repo.update(order, id_order)
+    
+    def delete(self, id_order):
+        return self.__repo.delete(id_order)
+        
     def create(self, order):
-        return self.order_service.create(order)
-
-    def update(self, order):
-        return self.order_service.update(order)
-
-    def delete(self, id):
-        return self.order_service.delete(id)
+        return self.__repo.create(order)

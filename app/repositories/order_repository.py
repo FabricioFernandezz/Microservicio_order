@@ -1,7 +1,7 @@
 from app.models.order import *
-from app.config import db
 from app.repositories.base_repository import BaseRepository
 from app.config.database import db
+from app import db
 
 class OrderRepository(BaseRepository):
     def __init__(self):

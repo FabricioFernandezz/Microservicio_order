@@ -1,6 +1,9 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import os
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 basedir =os.path.abspath(Path(__file__).parents[2])
 load_dotenv(os.path.join(basedir, './app/config/.env'))
