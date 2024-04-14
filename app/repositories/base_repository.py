@@ -2,7 +2,6 @@ from app.models.order import *
 from app.config.database import db
 from app.repositories.CRUD import Read, Update, Create, Delete
 
-
 class BaseRepository(Read, Update, Create, Delete):
     def __init__(self, model):
         self.__model = model
@@ -13,7 +12,7 @@ class BaseRepository(Read, Update, Create, Delete):
     def find_all(self):
         return db.session.query(self.__model).all()
     
-    def create(self, entity: db.Model):
+    def create(self, entity:Order):
         db.session.add(entity)
         db.session.commit()
         return entity
