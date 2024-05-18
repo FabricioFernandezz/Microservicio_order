@@ -16,3 +16,4 @@ app/test/__pycache__/
 
 /.vscode/
 
+/docker/redis/data/
