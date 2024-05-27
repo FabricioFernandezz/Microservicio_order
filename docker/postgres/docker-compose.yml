@@ -1,14 +1,10 @@
-version: '3.3'
-
 services: 
     postgresql:
-        container_name: postgresql-servidor   #no le ponemos nombre si hay varias intancias
+        container_name: postgresql   #no le ponemos nombre si hay varias intancias
         image: postgres:16.2-bullseye
 
         networks:
-            - postgresql  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
-        ports:
-            - "5432:5432"
+            - mired  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}     #HACER UN ARCHIVO .env
@@ -17,8 +13,13 @@ services:
 
         volumes: #vinvula el host con el contenedor 
             - ./data:/var/lib/postgresql/data
-            
-        # restart: always
 
+        labels:
+            - "traefik.enable=true"
+            - "traefik.tcp.routers.postgresql.rule=HostSNI(`*`)"
+            - "traefik.tcp.routers.postgresql.entryPoints=postgresql"
+            - "traefik.tcp.services.postgresql.loadbalancer.server.port=5432"
+            
 networks:
-    postgresql:
+  mired:
+    external: true

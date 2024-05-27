@@ -6,7 +6,7 @@ app/config/.env
 
 **/__pycache__/
 
-/docker/postgres/data/
+/docker/data/
 
 app/__pycache__/
 
@@ -17,3 +17,7 @@ app/test/__pycache__/
 /.vscode/
 
 /docker/redis/data/
+
+/docker/postgres/data/
+
+/docker/traefik/certs/

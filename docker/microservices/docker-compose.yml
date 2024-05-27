@@ -1,0 +1,20 @@
+services:
+
+  order:
+    container_name: order
+    image: microservicesorder:v1.0.0
+    networks:
+      - mired
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.order.rule=Host(`order.localhost`)"
+      - "traefik.http.services.order.loadbalancer.server.port=5000"
+      - "traefik.docker.network=mired"
+      - "traefik.http.middlewares.order.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+      - "traefik.http.middlewares.order.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+      - "traefik.http.middlewares.order.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
+    
+networks:
+  mired:
+    external: true
+

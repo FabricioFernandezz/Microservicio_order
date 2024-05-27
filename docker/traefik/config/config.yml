@@ -1,18 +1,18 @@
 http:
   routers:
     traefik:
-      rule: "Host(`traefik.sportiq.localhost`)"
+      rule: "Host(`traefik.order.localhost`)"
       service: "api@internal"
       tls:
         domains:
-          - main: "sportiq.localhost"
+          - main: "order.localhost"
             sans:
-              - "*.sportiq.localhost"
-          - main: "sportiq.local"
+              - "*.order.localhost"
+          - main: "order.local"
             sans:
-              - "*.sportiq.local"
+              - "*.order.local"
 
 tls:
   certificates:
-    - certFile: "/etc/certs/sportiq-cert.pem"
-      keyFile: "/etc/certs/sportiq-key.pem"
+    - certFile: "/etc/certs/order-cert.pem"
+      keyFile: "/etc/certs/order-key.pem"
