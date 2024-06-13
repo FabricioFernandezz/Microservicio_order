@@ -1,14 +1,13 @@
 from app.models.order import *
 from app.repositories.base_repository import BaseRepository
-from app.config.database import db
 from app import db
 
 class OrderRepository(BaseRepository):
     def __init__(self):
         super().__init__(Order)
         self.__model = Order
-
-    def update(self, entity: db.Model, id: int):
+        
+    def update(self, entity: Order, id: int):
         try:
             existing_entity = db.session.query(self.__model).get(id)
             if existing_entity :

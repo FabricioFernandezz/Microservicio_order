@@ -11,12 +11,11 @@ class OrderService:
     def find_all(self):
         return self.__repo.find_all()
     
-    def update (self, order, id_order):
+    def update(self, order, id_order):
         return self.__repo.update(order, id_order)
     
     def delete(self, id_order):
         return self.__repo.delete(id_order)
         
     def create(self, order):
-        
         return self.__repo.create(order)
