@@ -10,14 +10,6 @@ services:
       - 443:443
       - 5432:5432
       - 6379:6379
-    # command:
-    #   - "--api.insecure=true"
-    #   - "--providers.docker=true"
-    #   - "--providers.docker.exposedbydefault=false"
-    #   - "--entrypoints.web.address=:80"
-    #   - "--entrypoints.websecure.address=:443"
-    #   - "--entrypoints.postgresql.address=:5432"
-    #   - "--entrypoints.redis.address=:6379"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yml:/etc/traefik/traefik.yml

@@ -5,6 +5,8 @@ services:
 
         networks:
             - mired  #el servicio se va  aejecutar en esta red, es el identificador de donde se va a optener la ip
+        # ports:
+        #     - 5433:5432
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}     #HACER UN ARCHIVO .env

@@ -14,5 +14,5 @@ http:
 
 tls:
   certificates:
-    - certFile: "/etc/certs/order-cert.pem"
-      keyFile: "/etc/certs/order-key.pem"
+    - certFile: "/etc/certs/order.localhost-cert.pem"
+      keyFile: "/etc/certs/order.localhost-key.pem"

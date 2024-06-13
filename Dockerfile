@@ -1,12 +1,24 @@
 FROM python:3.11.8-bullseye
 
-WORKDIR /app
+ENV GECKODRIVER_VER=v0.31.0
+ENV FLASK_ENV=production
+ENV PYTHONUNBUFFERED=1
+ENV PATH=$PATH:/home/flaskapp/.local/bin
 
-ADD . /app
+RUN useradd --create-home --home-dir /home/flaskapp postgres
+
+WORKDIR /home/flaskapp
+
+USER postgres
+RUN mkdir app
+
+COPY ./app ./app
+COPY ./app.py .
+
+ADD requirements.txt ./requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
-
+CMD [ "python", "./app.py" ]

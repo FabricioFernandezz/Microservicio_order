@@ -1,18 +1,22 @@
 services:
-
-  order:
-    container_name: order
-    image: microservicesorder:v1.0.0
+  ms4:
+    image: microservicesorder:v1.0.1
+    environment:
+      - USER_DB=${USER_DB}
+      - PASS_DB=${PASS_DB}
+      - URL_DB=${URL_DB}
+      - NAME_DB=${NAME_DB}
     networks:
       - mired
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.order.rule=Host(`order.localhost`)"
-      - "traefik.http.services.order.loadbalancer.server.port=5000"
+      - "traefik.http.routers.ms4.rule=Host(`ms4.order.localhost`)"
+      - "traefik.http.routers.ms4.tls=true"
+      - "traefik.http.services.ms4.loadbalancer.server.port=5000"
       - "traefik.docker.network=mired"
-      - "traefik.http.middlewares.order.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
-      - "traefik.http.middlewares.order.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
-      - "traefik.http.middlewares.order.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
+      - "traefik.http.middlewares.ms4.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+      - "traefik.http.middlewares.ms4.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+      - "traefik.http.middlewares.ms4.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
     
 networks:
   mired:

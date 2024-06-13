@@ -20,4 +20,3 @@ app/test/__pycache__/
 
 /docker/postgres/data/
 
-/docker/traefik/certs/
