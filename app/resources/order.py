@@ -19,6 +19,13 @@ def create_order():
     result = schema.dump(created_order)
     return jsonify(result), 201
 
+@order.route('/order/all', methods=['GET'])
+def get_all_orders():
+    order_service = OrderService()
+    orders = order_service.find_all()
+    result = schema.dump(orders, many=True)
+    return jsonify(result), 200
+
 @order.route('/order/<order_id>', methods=['GET'])
 def get_order(order_id):
     order_service = OrderService()
