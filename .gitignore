@@ -21,3 +21,5 @@ app/__pycache__/
 /docker/traefik/certs/
 
 /migrations/
+
+/zk6/

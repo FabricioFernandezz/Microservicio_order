@@ -8,6 +8,8 @@ services:
       - NAME_DB=${NAME_DB}
     networks:
       - mired
+    deploy:
+      replicas: 3
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ms4.rule=Host(`ms4.order.localhost`)"
