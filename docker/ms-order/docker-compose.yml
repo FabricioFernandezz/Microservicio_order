@@ -1,6 +1,6 @@
 services:
   ms4:
-    image: microservicesorder:v1.0.1
+    image: ms-order:v1.0.11
     environment:
       - USER_DB=${USER_DB}
       - PASS_DB=${PASS_DB}
@@ -8,8 +8,8 @@ services:
       - NAME_DB=${NAME_DB}
     networks:
       - mired
-    deploy:
-      replicas: 3
+    # deploy:
+    #   replicas: 3
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ms4.rule=Host(`ms4.order.localhost`)"
